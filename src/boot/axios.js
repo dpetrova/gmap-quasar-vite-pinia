@@ -2,7 +2,7 @@ import { boot } from "quasar/wrappers";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: `https://api.zippopotam.us/bg`,
+  baseURL: `https://api.zippopotam.us`,
   withCredentials: false,
   headers: {
     Accept: "application/json",

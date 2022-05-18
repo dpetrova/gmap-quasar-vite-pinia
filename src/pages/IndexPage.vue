@@ -39,7 +39,7 @@
       <div>
         <div style="font-size: 5vw">Oops. No location to show...</div>
         <div style="font-size: 3vw; opacity: 0.4">
-          Please enter a BG Postal Code
+          Please enter a Postal Code
         </div>
       </div>
     </section>

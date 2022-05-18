@@ -1,15 +1,28 @@
 <template>
   <q-form @submit.prevent="onSubmit" class="q-pa-sm">
+    <q-select
+      v-model="country"
+      :options="store.countries"
+      :option-value="(item) => (item === null ? null : item.code)"
+      :option-label="
+        (item) => (item === null ? 'No such country' : item.country)
+      "
+      :rules="[(val) => val || 'Country is required.']"
+      label="Select a country"
+      class="full-width q-mb-sm"
+    />
+
     <q-input
       v-model="postalcode"
       :label="label"
-      :rules="postalCodeBgRules()"
+      :rules="postalCodeRules()"
+      :disable="!country"
       lazy-rules
       class="full-width q-mb-sm"
     >
-      <template v-slot:prepend>
+      <!-- <template v-slot:prepend>
         <q-icon :name="icon" />
-      </template>
+      </template> -->
     </q-input>
 
     <q-btn
@@ -25,6 +38,10 @@
 <script setup>
 import { ref } from "vue";
 import { useMapStore } from "stores/map";
+import {
+  postcodeValidator,
+  postcodeValidatorExistsForCountry,
+} from "postcode-validator";
 
 defineProps({
   icon: {
@@ -47,13 +64,18 @@ defineProps({
 
 const store = useMapStore();
 
+const country = ref(null);
 const postalcode = ref("");
 
-const postalCodeBgRules = () => {
-  return [(v) => /^\d{4}$/.test(v) || "Please enter a valid BG postal code"];
+const postalCodeRules = () => {
+  return [
+    (v) =>
+      postcodeValidator(postalcode.value, country.value?.code) ||
+      "Please enter a valid postal code",
+  ];
 };
 
 const onSubmit = () => {
-  store.locate(postalcode.value);
+  store.locate(country.value?.code, postalcode.value);
 };
 </script>

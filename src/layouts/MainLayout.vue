@@ -17,7 +17,7 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header> Search </q-item-label>
+        <q-item-label header> Location Search </q-item-label>
         <SearchLink v-bind="searchLink" />
       </q-list>
     </q-drawer>
@@ -33,8 +33,8 @@ import { reactive, ref } from "vue";
 import SearchLink from "components/SearchLink.vue";
 
 const searchLink = reactive({
-  label: "BG Postal Code",
-  caption: "Enter a BG postal code to search for",
+  label: "Postal Code",
+  caption: "Enter a postal code to search for",
   icon: "place",
   action: "search",
 });

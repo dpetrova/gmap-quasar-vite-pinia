@@ -1,21 +1,9 @@
 import { defineStore } from "pinia";
+import countries from "./countries.json";
 
 export const useMapStore = defineStore("map", {
   state: () => ({
-    // location: {
-    //   "post code": "3000",
-    //   country: "Bulgaria",
-    //   "country abbreviation": "BG",
-    //   places: [
-    //     {
-    //       "place name": "\u0412\u0440\u0430\u0446\u0430 / Vraca",
-    //       longitude: "23.5625",
-    //       state: "\u0412\u0440\u0430\u0446\u0430 / Vraca",
-    //       "state abbreviation": "VRC",
-    //       latitude: "43.21",
-    //     },
-    //   ],
-    // },
+    countries,
     location: null,
   }),
   getters: {
@@ -40,9 +28,9 @@ export const useMapStore = defineStore("map", {
     },
   },
   actions: {
-    async locate(postalCode) {
+    async locate(countryCode, postalCode) {
       try {
-        this.location = await this.api.get(postalCode);
+        this.location = await this.api.get(`${countryCode}/${postalCode}`);
       } catch (error) {
         this.location = null;
       }

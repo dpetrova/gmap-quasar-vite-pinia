@@ -14,8 +14,6 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
-
 defineProps({
   postalCode: {
     type: String,

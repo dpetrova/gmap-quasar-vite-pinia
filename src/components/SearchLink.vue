@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref } from "vue";
+import { ref } from "vue";
 import { useMapStore } from "stores/map";
 
 defineProps({

@@ -22,7 +22,6 @@
           :opened="openedMarkerId === marker.id"
         >
           <div>
-            Info
             <LocationInfo
               :country="store.location?.country"
               :postalCode="store.location?.['post code']"

@@ -8,6 +8,7 @@
         (item) => (item === null ? 'No such country' : item.country)
       "
       :rules="[(val) => val || 'Country is required.']"
+      @update:model-value="onUpdate"
       label="Select a country"
       class="full-width q-mb-sm"
     />
@@ -73,6 +74,10 @@ const postalCodeRules = () => {
       postcodeValidator(postalcode.value, country.value?.code) ||
       "Please enter a valid postal code",
   ];
+};
+
+const onUpdate = () => {
+  postalcode.value = "";
 };
 
 const onSubmit = () => {
